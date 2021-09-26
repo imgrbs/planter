@@ -14,7 +14,7 @@ function timestamp() {
     return new Date()
 }
 
-app.get(baseVersion + '/watering', function (req, res) {
+app.get(baseVersion + '/watering/value/:value', function (req, res) {
     const data = { timestamp: timestamp(), moisture: parseInt(req.query.value) }
 
     dbConnection.query(`INSERT INTO watering set ?`, data, function (err, result) {
@@ -25,7 +25,7 @@ app.get(baseVersion + '/watering', function (req, res) {
     });
 })
 
-app.get(baseVersion + '/moisture', function (req, res) {
+app.get(baseVersion + '/moisture/value/:value', function (req, res) {
     const data = { timestamp: timestamp(), moisture: parseInt(req.query.value) }
 
     dbConnection.query(`INSERT INTO moisture set ?`, data, function (err, result) {
